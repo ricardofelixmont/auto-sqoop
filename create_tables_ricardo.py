@@ -13,8 +13,7 @@ import configparser
 
 
 conteudo = ''       # Guarda o conteudo de cada linha da tabela, que sera gravada na saida
-separador = '\n'    # Utilizado para dar a quebra de linha no arquivo de saida
-
+separador = '\n'    # Separa os conteudos com \n 
 # Acessando o caminho do arquivo 'p.ini'
 conf_file = "create_table_ricardo.ini"
 config = configparser.ConfigParser()
@@ -32,6 +31,7 @@ os.system('mkdir saida')      # Cria um diretorio 'saida'
 def retira_espacos(conteudo):
     count = 1
     string = ''
+   
     for pos,linha in enumerate(conteudo.split()):
         if not pos % 2 != 0:
             string += f"{linha}"+','
@@ -43,14 +43,15 @@ def retira_espacos(conteudo):
 def formata_tabela(conteudo):
     string = ''
     for pos, linha in enumerate(conteudo.split()):
+        if pos == 0 or pos == 1: # Retira o cabeçalho
+            continue
         string += f'{linha} '
         if pos % 2 != 0:
             string += '\n'
     return string
 
-
 # Create Table
-# nome_da_tabela vem do arquivo 'lista' onde estão os nomes de todas as tabelas que e
+# nome_da_tabela vem do arquivo 'lista' onde estão os nomes de todas as tabelas que
 # que estamos tratando
 def create_table_trunc_insert(conteudo, nome_da_tabela, conjunto_substituidos):
     substituidos = ''
@@ -84,20 +85,24 @@ def create_table_append_work(conteudo, nome_da_tabela, conjunto_substituidos):
 
 # MAIN
 with open(path+'lista', 'r') as f:  # Abre a lista de arquivos
+
+    # MENU
     print('-=' * 15)
     print('MENU')
     print('-=' * 15)
     try: 
-        op = int(input('[1] - Trunc/Insert\n[2] - Append\nDigite uma opção: '))
+        op = int(input('[1] - Gerar - Trunc/Insert\n[2] - Gerar - Append\nDigite uma opção: '))
     except Exception as e:
         print(f'Erro: {e}')
     else:
         print('Opção invalida, tente novamente')
+    # Fim do Menu    
+
     for linha in f:                             # Cada linha é o nome de arquivo .txt que será aberto
         with open(path+linha[:-1],"r") as f:    # Abre o arquivo .txt e guarda no objeto f
             nome_da_tabela = linha[:-5]
             data = f.readlines()                # Cria uma lista 'data' com o conteudo de f
-        
+                
         # Começo do tratamento (Regras de Negócio)
         conteudo = '' # Esvazia a lista
         conjunto_substituidos = set()
@@ -141,7 +146,6 @@ with open(path+'lista', 'r') as f:  # Abre a lista de arquivos
             create_table_append_raw(conteudo[:-2], nome_da_tabela, conjunto_substituidos) 
             create_table_append_work(conteudo[:-2], nome_da_tabela, conjunto_substituidos)
             break
-
         # A partir daqui não é mais necessário
         # Cria um arquivo com o nome da tabela(ex: dim_accounts), grava o conteudo e fecha o arquivo
         # ref_arquivo = open(path+'saida/'+'tabela_'+linha[:-1], 'w')
