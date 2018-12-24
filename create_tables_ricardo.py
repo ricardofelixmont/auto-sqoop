@@ -1,12 +1,16 @@
+#!/usr/bin/env python3
+
+# =================COMO USAR==========================
 # Colocar os .txt que devem ser tratados na mesma pasta do programa 'create_tables.py'
-# O nome dos arquivos.txt tem que ser o mesmo nome da tabela a ser tratada, exemplo: CustomerProgramSettingType  
-# No arquivo.ini
-#   -path = 'diretorio onde o modulo p.py está'
+# O nome dos arquivos.txt tem que ser o mesmo nome da tabela a ser tratada, exemplo: CustomerProgramSettingType.txt
+# No arquivo.ini:
+#   -path = 'diretorio onde o modulo create_tables.py está'
 #   -nome_do_banco = 'rezad01'
 #   -campo_assistido = 'ano_mes int'
 #
 # Programa cria um diretório 'saida'
-# Trata os arquivos da entrada e joga na saida como .txt
+# Trata os arquivos da entrada e joga na saida como .sql
+# O programa retira o cabeçalho das tabelas, portanto as tabelas precisam estar com o cabecalho
 
 import os
 import configparser
