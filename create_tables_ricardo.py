@@ -95,7 +95,7 @@ with open(path+'lista', 'r') as f:  # Abre a lista de arquivos
     print('MENU')
     print('-=' * 15)
     try: 
-        op = int(input('[1] - Gerar - Trunc/Insert\n[2] - Gerar - Append\nDigite uma opção: '))
+        op = int(input('[1] - Gerar - Trunc/Insert\n[2] - Gerar - Append\n[3] - Formatar colunas SqoopJOB\nDigite uma opção: '))
     except Exception as e:
         print(f'Erro: {e}')
     else:
@@ -150,6 +150,9 @@ with open(path+'lista', 'r') as f:  # Abre a lista de arquivos
             create_table_append_raw(conteudo[:-2], nome_da_tabela, conjunto_substituidos) 
             create_table_append_work(conteudo[:-2], nome_da_tabela, conjunto_substituidos)
             break
+        # Apenas retira os espaços da tabela gerada pelo get schema
+        if op == 3:
+            print(retira_espacos(conteudo))
         # A partir daqui não é mais necessário
         # Cria um arquivo com o nome da tabela(ex: dim_accounts), grava o conteudo e fecha o arquivo
         # ref_arquivo = open(path+'saida/'+'tabela_'+linha[:-1], 'w')
