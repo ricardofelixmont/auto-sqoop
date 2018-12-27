@@ -1,0 +1,14 @@
+nome_tabela,chave_primaria,campo_assistido,particionar_campo_por
+rezadod01.dbo.BookingComment,BookingCommentID,CreatedDate,Ano / Mês
+rezadod01.dbo.BookingHistory,BookingHistoryID,CreatedDate,Ano / Mês
+rezadod01.dbo.BookingPassengerVersion,PassengerID,ModifiedDate,Ano / Mês
+rezadod01.dbo.BookingQueueHistory,BookingQueueHistoryID,CreatedDate,Ano / Mês
+rezadod01.dbo.BookingVersion,BookingID,ModifiedDate,Ano / Mês
+rezadod01.dbo.InventoryLegClass,ClassNest,ModifiedDate,Ano / Mês
+rezadod01.dbo.InventoryLegVersion,InventoryLegID,Ano / Mês
+rezadod01.dbo.PassengerFeeChargeVersion,ChargeNumber,CreatedDate,Ano / Mês
+rezadod01.dbo.PassengerFeeVersion,FeeNumber,ModifiedDate,Ano / Mês
+rezadod01.dbo.PassengerJourneyChargeVersion,ChargeNumber,CreatedDate,Ano / Mês
+rezadod01.dbo.PassengerJourneyLegVersion,LegNumber,ModifiedDate,Ano / Mês
+rezadod01.dbo.PassengerJourneySegmentProperty,PassengerID,ModifiedDate,Ano / Mês
+rezadod01.dbo.PassengerJourneySSRVersion,LegNumber,ModifiedDate,Ano / Mês
